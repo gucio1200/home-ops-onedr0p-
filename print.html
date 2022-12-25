@@ -237,21 +237,19 @@ GitRepository :: home-ops-kubernetes
 </ul>
 <hr />
 <h2 id="-cloud-dependencies"><a class="header" href="#-cloud-dependencies">☁️ Cloud Dependencies</a></h2>
-<p>While most of my infrastructure and workloads are selfhosted I do rely upon the cloud for certain key parts of my setup.</p>
-<ul>
-<li><a href="https://github.com/">GitHub</a> for hosting this repository and continuous integration/deployments.</li>
-<li>Domain, DNS and proxy management with <a href="https://www.cloudflare.com/">Cloudflare</a>.</li>
-<li><a href="https://1password.com/">1Password</a> paid family plan for the <a href="https://external-secrets.io/">External Secrets Operator</a>.</li>
-<li>Terraform state is handled using a free <a href="https://www.terraform.io/">Terraform Cloud</a> account.</li>
-<li>Offsite application backups are sync to <a href="https://www.backblaze.com/b2">B2 Storage</a>.</li>
-<li><a href="https://uptimerobot.com/">UptimeRobot</a> for monitoring internet connectivity and external facing applications.</li>
-<li><a href="https://cloud.google.com/">GCP</a> for voice interactions with Home Assistant over Google Assistant.</li>
-</ul>
-<p><em>There are absolutely selfhosted alternatives that I could use for some of these but I find the maintenance burden too high of cost for running alternatives at home.</em></p>
-<details>
-  <summary>Click here to read a bit more of my thoughts on this</summary>
-For example, instead of 1Password you want to deploy HashiCorp Vault to use with the External Secrets Operator. In my opinion that shouldn't run in the same Kubernetes cluster where it is being used because it's a very critical piece of infrastructure. In this scenerio it would probably be best to deploy HC Vault to another computer in your home or use a free Oracle Cloud VM but now you just incurred the cost of maintaining that critical piece of infrastructure elsewhere.
-</details>
+<p>While most of my infrastructure and workloads are selfhosted I do rely upon the cloud for certain key parts of my setup. This saves me from having to worry about applications which I critically need whether my cluster is online or not.</p>
+<div class="table-wrapper"><table><thead><tr><th>Service</th><th>Use</th><th>Cost</th></tr></thead><tbody>
+<tr><td><a href="https://github.com/">GitHub</a></td><td>Hosting this repository and continuous integration/deployments</td><td>Free</td></tr>
+<tr><td><a href="https://www.cloudflare.com/">Cloudflare</a></td><td>Domain, DNS and proxy management</td><td>~$30/y</td></tr>
+<tr><td><a href="https://1password.com/">1Password</a></td><td>Secrets with <a href="https://external-secrets.io/">External Secrets</a></td><td>~$65/y</td></tr>
+<tr><td><a href="https://www.terraform.io/">Terraform Cloud</a></td><td>Storing Terraform state</td><td>Free</td></tr>
+<tr><td><a href="https://www.backblaze.com/b2">B2 Storage</a></td><td>Offsite application backups</td><td>~$5/m</td></tr>
+<tr><td><a href="https://uptimerobot.com/">UptimeRobot</a></td><td>Monitoring internet connectivity and external facing applications</td><td>~$60/y</td></tr>
+<tr><td><a href="https://pushover.net/">Pushover</a></td><td>Kubernetes Alerts and application notifications</td><td>Free</td></tr>
+<tr><td><a href="https://cloud.google.com/">GCP</a></td><td>Voice interactions with Home Assistant over Google Assistant</td><td>Free</td></tr>
+<tr><td></td><td></td><td>Total: ~$18/m</td></tr>
+</tbody></table>
+</div>
 <hr />
 <h2 id="-dns"><a class="header" href="#-dns">🌐 DNS</a></h2>
 <h3 id="ingress-controller"><a class="header" href="#ingress-controller">Ingress Controller</a></h3>
